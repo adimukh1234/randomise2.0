@@ -153,7 +153,7 @@ export default function Projects() {
               {title.split(' ').map((word, index) => (
                 <motion.span 
                   key={index} 
-                  className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-lg"
+                  className="block text-slate-300 tracking-tight drop-shadow-[0_0_10px_rgba(56,189,248,0.12)]"
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   transition={{ delay: index * 0.2, duration: 0.6 }}
@@ -213,37 +213,8 @@ export default function Projects() {
   return (
     <section 
       id="projects" 
-      className="relative bg-gradient-to-br from-[#000000] via-[#020108] to-[#0a051a] py-20 overflow-hidden"
+      className="relative bg-transparent py-20 overflow-hidden"
     >
-      {/* Enhanced background effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#2D0FF7]/10 to-[#6A0FF4]/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-[#A10FF2]/10 to-[#F20059]/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
 
       {/* Live Projects Section */}
       <ProjectSection

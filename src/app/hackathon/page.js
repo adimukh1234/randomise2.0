@@ -104,7 +104,7 @@ export default function Hackathon() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#000000] via-[#020108] to-[#0a051a] text-white py-20">
+    <div className="min-h-screen bg-transparent text-white py-20">
       {/* Hero Section */}
       <motion.div 
         className="text-center mb-16 px-4"
@@ -112,7 +112,7 @@ export default function Hackathon() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-4xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-7xl font-bold mb-6 text-slate-300 tracking-tight drop-shadow-[0_0_12px_rgba(56,189,248,0.15)]">
           The Hackathon
         </h1>
         <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">

@@ -86,10 +86,10 @@
   --color-accent: var(--color-brand-rose);
 
   /* UI Colors */
-  --color-background: radial-gradient(ellipse at center, #1a0b3d 0%, #0d0618 50%, #000000 100%);
-  --color-background-solid: #0d0618;
-  --color-surface: #1a0b3d;
-  --color-card: linear-gradient(135deg, #1e0f4a 0%, #2a1255 100%);
+  --color-background: #05030B;
+  --color-background-solid: #05030B;
+  --color-surface: #0a0714;
+  --color-card: linear-gradient(135deg, #0e0a1e 0%, #150f2b 100%);
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #DADADA;
   --color-text-muted: #999999;
@@ -137,7 +137,7 @@
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+    font-family: var(--font-garamond), 'EB Garamond', 'Garamond', 'Georgia', serif;
     line-height: var(--line-height-normal);
     color: var(--color-text-primary);
     background: var(--color-background);
@@ -145,22 +145,21 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     min-height: 100vh;
+    font-size: 1.0625rem;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    line-height: var(--line-height-tight);
-    font-weight: 700;
-    letter-spacing: -0.025em;
+    font-family: var(--font-bebas), 'Bebas Neue', 'Impact', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    font-weight: 400; /* Bebas Neue is inherently bold at 400 */
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
-  /* Enhanced heading styles */
   h1 {
-    /* background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%); */
-    background-clip: text;
-    -webkit-background-clip: text;
-    font-weight: 800;
-    letter-spacing: -0.04em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
   }
 
   h2 {
@@ -174,9 +173,30 @@
   }
 
   p {
+    font-family: var(--font-garamond), 'EB Garamond', 'Garamond', 'Georgia', serif;
     color: var(--color-text-secondary);
-    line-height: 1.7;
+    line-height: 1.75;
     font-weight: 400;
+  }
+
+  li, td, th, blockquote, figcaption {
+    font-family: var(--font-garamond), 'EB Garamond', 'Garamond', 'Georgia', serif;
+  }
+
+  /* Preserve Bebas Neue on elements that explicitly use font-heading */
+  .font-heading {
+    font-family: var(--font-bebas), 'Bebas Neue', 'Impact', sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .font-body {
+    font-family: var(--font-garamond), 'EB Garamond', 'Garamond', 'Georgia', serif !important;
+  }
+
+  /* Buttons and inputs stay neutral */
+  button, input, textarea, select {
+    font-family: var(--font-garamond), 'EB Garamond', 'Garamond', 'Georgia', serif;
   }
 
   a {
@@ -188,9 +208,10 @@
   a:hover {
     color: var(--color-primary-dark);
   }
-}
 
 /* ===== COMPONENT STYLES ===== */
+} /* end @layer base */
+
 @layer components {
   /* Navbar Component */
   .navbar {
@@ -620,6 +641,7 @@
 /* ===== UTILITY CLASSES ===== */
 @layer utilities {
   .container {
+     width: 100%;  
     max-width: var(--container-xl);
     margin: 0 auto;
     padding: 0 var(--spacing-md);
@@ -782,8 +804,8 @@
   .bg-dark-card { background: var(--color-card); }
 
   /* Gradient Background Utilities */
-  .bg-gradient-dark { background: radial-gradient(ellipse at center, #1a0b3d 0%, #0d0618 50%, #000000 100%); }
-  .bg-gradient-dark-card { background: linear-gradient(135deg, #1e0f4a 0%, #2a1255 100%); }
+  .bg-gradient-dark { background: #05030B; }
+  .bg-gradient-dark-card { background: linear-gradient(135deg, #0e0a1e 0%, #150f2b 100%); }
 
   /* Border Utilities with Brand Colors */
   .border-brand { border-color: rgba(161, 15, 242, 0.2); }
@@ -1157,3 +1179,56 @@ body {
 .animated-heading-button .hover-text {
   transition: width 0.5s ease-in-out, filter 0.3s ease-in-out !important;
 }
+
+/* ===== HERO BACKGROUND BLOB ANIMATIONS ===== */
+/* CSS-driven so they run on the compositor thread, not the JS thread */
+@keyframes blob-purple {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(40px, -30px) scale(1.08); }
+  66%       { transform: translate(-30px, 30px) scale(0.92); }
+}
+@keyframes blob-blue {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-30px, 40px) scale(0.92); }
+  66%       { transform: translate(20px, -20px) scale(1.08); }
+}
+@keyframes blob-pink {
+  0%, 100% { transform: translate(0px, 0px) scale(0.95); }
+  33%       { transform: translate(20px, 30px) scale(1.05); }
+  66%       { transform: translate(-40px, -30px) scale(0.95); }
+}
+.hero-blob-purple {
+  animation: blob-purple 24s ease-in-out infinite;
+  will-change: transform;
+}
+.hero-blob-blue {
+  animation: blob-blue 28s ease-in-out infinite;
+  will-change: transform;
+}
+.hero-blob-pink {
+  animation: blob-pink 32s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ===== EVENTS PAGE UTILITIES ===== */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.events-modal-scroll::-webkit-scrollbar { width: 5px; }
+.events-modal-scroll::-webkit-scrollbar-track { background: transparent; }
+.events-modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+}
+.events-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.15);
+}
